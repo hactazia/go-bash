@@ -3,6 +3,7 @@
 # call constants file to get the constants
 source constants.sh
 source variables.sh
+source functions/debug.sh
 source functions/setup.sh
 source functions/cursor.sh
 source functions/logic.sh
@@ -20,7 +21,7 @@ main() {
     get_best_offest_y
     offset_y=$?
 
-    place_message "\e[1;30mWelcome to the game of \e[1;31mGo\e[1;30m!\e[0m"
+    place_message "Welcome to the game of \e[1;31mGo\e[0m!"
 
     # loop for the game
     loop

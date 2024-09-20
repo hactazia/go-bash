@@ -15,9 +15,13 @@ readonly EMPTY=0
 readonly BLACK=1
 readonly WHITE=2
 
+# Number of stones
+readonly NB_BLACK=181
+readonly NB_WHITE=180
+
 # Cell chars (enum)
-readonly EMPTY_CHAR="\e[1;30m·\e[0m"
-readonly HOSHI_CHAR="\e[1;30m+\e[0m"
+readonly EMPTY_CHAR="·"
+readonly HOSHI_CHAR="+"
 readonly BLACK_CHAR="\e[1;31m○\e[0m"
 readonly WHITE_CHAR="\e[1;34m●\e[0m"
 readonly DEBUG_CHAR="\e[1;33mX\e[0m"

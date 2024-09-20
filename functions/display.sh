@@ -9,7 +9,7 @@ fi
 # print all cells of the board
 init_print_board() {
     clear
-    place_message "\e[1;30mPreparing the board...\e[0m"
+    place_message "Preparing the board..."
 
     # print the top border
     place_cursor $((offset_x - 1)) $((offset_y - 1))
@@ -135,6 +135,7 @@ place_cursor() {
 
 place_message() {
     local msg=$1
+    print_debug "$msg"
     message_history+=("$msg")
 
     # remove old messages if there are too many
@@ -161,12 +162,12 @@ print_messages() {
 }
 
 print_current_player() {
-    place_message "\e[1;30mPlayer $(get_dispay_name $current_player)\e[1;30m turn\e[0m"
+    place_message "Current player: $(get_dispay_name $current_player)"
 }
 
 print_tips() {
     tput cup $(get_term_height) 0
-    echo -ne "\e[1;30mZQSD to move the cursor, A to place a stone, E to exit, R to recenter the board, P to pass, N to restart\e[0m"
+    echo -ne " ZQSD to move the cursor, A to place a stone, E to exit, R to recenter the board, P to pass, N to restart"
 }
 
 get_term_width() {
