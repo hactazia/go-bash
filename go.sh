@@ -1,20 +1,25 @@
 #!/bin/bash
 
+# detect use bash shell
+if [ -z "$BASH_VERSION" ]; then
+    echo "Please use /bin/bash shell to run this script"
+    exit 1
+fi
+
+
 # call constants file to get the constants
-source constants.sh
-source variables.sh
-source functions/debug.sh
-source functions/setup.sh
-source functions/cursor.sh
-source functions/logic.sh
-source functions/display.sh
-source functions/loop.sh
+source ./constants.sh
+source ./variables.sh
+source ./functions/debug.sh
+source ./functions/setup.sh
+source ./functions/cursor.sh
+source ./functions/logic.sh
+source ./functions/display.sh
+source ./functions/loop.sh
 
 # main function
 
 main() {
-    height=19
-    width=19
 
     get_best_offest_x
     offset_x=$?
