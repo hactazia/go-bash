@@ -6,6 +6,11 @@ if [ -z "$BASH_VERSION" ]; then
     exit 1
 fi
 
+# detch if the cwd is the same as the script
+if [ "$(pwd)" != "$(dirname $0)" ]; then
+    cd "$(dirname $0)"
+fi
+
 
 # call constants file to get the constants
 source ./constants.sh
@@ -16,6 +21,13 @@ source ./functions/cursor.sh
 source ./functions/logic.sh
 source ./functions/display.sh
 source ./functions/loop.sh
+
+cleanup() {
+    clear
+    echo "Ctrl+C detected. Exiting gracefully..."
+    exit 1
+}
+trap cleanup SIGINT
 
 # main function
 
