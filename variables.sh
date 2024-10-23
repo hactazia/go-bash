@@ -10,8 +10,8 @@ fi
 current_player=$BLACK
 pass_black=0
 pass_white=0
-nb_black=$NB_BLACK
-nb_white=$NB_WHITE
+stone_black=$NB_BLACK
+stone_white=$NB_WHITE
 
 # Board size
 height=19
@@ -36,6 +36,6 @@ offset_y=10
 declare -A board
 
 # Display settings
-debug=0
+debug=1
 messages_history=()
 max_message_length=6

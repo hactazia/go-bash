@@ -16,8 +16,8 @@ readonly BLACK=1
 readonly WHITE=2
 
 # Number of stones
-readonly NB_BLACK=181
-readonly NB_WHITE=180
+readonly NB_BLACK=3
+readonly NB_WHITE=2
 
 # Cell chars (enum)
 readonly EMPTY_CHAR="·"

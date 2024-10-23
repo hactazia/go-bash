@@ -163,6 +163,7 @@ print_messages() {
 
 print_current_player() {
     place_message "Current player: $(get_dispay_name $current_player)"
+    place_message "Left $(get_stone_left $current_player) stone(s)"
 }
 
 print_tips() {

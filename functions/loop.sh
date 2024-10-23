@@ -58,6 +58,8 @@ loop() {
                     place_message "Cell is occupied"
                     elif (($result == 3)); then
                     place_message "Invalid move, suicide"
+                    elif (($result ==4)); then
+                    place_message "No more stones left, pass your turn"
                 fi
             ;;
             'e')
@@ -80,20 +82,9 @@ loop() {
                 local passs=$((pass_black + pass_white))
                 if [ $passs -gt 1 ]; then
                     place_message "Both players passed, game over"
-                    local black_score=0
-                    local white_score=0
-                    for ((i = 0; i < height; i++)); do
-                        for ((j = 0; j < width; j++)); do
-                            get_cell $i $j
-                            if [ $? -eq $BLACK ]; then
-                                black_score=$((black_score + 1))
-                                elif [ $? -eq $WHITE ]; then
-                                white_score=$((white_score + 1))
-                            fi
-                        done
-                    done
-                    place_message "$(get_dispay_name $BLACK) score: $black_score"
-                    place_message "$(get_dispay_name $WHITE) score: $white_score"
+
+                    place_message "$(get_dispay_name $BLACK) score: $(get_score $BLACK)"
+                    place_message "$(get_dispay_name $WHITE) score: $(get_score $WHITE)"
                     break
                     exit 0
                 else

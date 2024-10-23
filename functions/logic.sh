@@ -11,7 +11,14 @@ try_place_stone() {
     local x=$1
     local y=$2
     local state=$3
-    
+
+    # check if there is stone left
+    local sl=$(get_stone_left $state)
+    if [ $sl -eq 0 ]
+    then
+        return 4
+    fi
+
     # check if the cell is valid
     is_valid $x $y
     if [ $? -eq 0 ]; then
@@ -32,6 +39,9 @@ try_place_stone() {
         set_cell $x $y $EMPTY
         return 3
     fi
+
+    set_stone_left $state $((sl - 1))
+
     return 0
 }
 
@@ -232,20 +242,17 @@ is_dead() {
 
 # get score of
 get_score() {
-    local black_score=0
-    local white_score=0
+    local score=0
+    local state=$1
     for ((i = 0; i < height; i++)); do
         for ((j = 0; j < width; j++)); do
-            echo $black_score $white_score
             get_cell $i $j
-            if [ $? -eq $BLACK ]; then
-                black_score=$((black_score + 1))
-                elif [ $? -eq $WHITE ]; then
-                white_score=$((white_score + 1))
+            if [ $? -eq $state ]; then
+                score=$((score + 1))
             fi
         done
     done
-    echo $black_score $white_score
+    echo $score
 }
 
 next_player() {
@@ -262,8 +269,8 @@ init_game() {
     
     # setup (rule 1)
     current_player=$BLACK
-    nb_black=$NB_BLACK
-    nb_white=$NB_WHITE
+    set_stone_left $BLACK $NB_BLACK
+    set_stone_left $WHITE $NB_WHITE
 }
 
 get_pass() {
@@ -275,6 +282,18 @@ get_pass() {
     fi
 }
 
+get_stone_left() {
+    print_debug "GET STONE LEFT: $1"
+    local player=$1
+    if [ $player -eq $BLACK ]; then
+        print_debug "GET STONE LEFT: $stone_black"
+        echo $stone_black
+        elif [ $player -eq $WHITE ]; then
+        print_debug "GET STONE LEFT: $stone_white"
+        echo $stone_white
+    fi
+}
+
 set_pass() {
     local player=$1
     local pass=$2
@@ -282,6 +301,16 @@ set_pass() {
         pass_black=$pass
         elif [ $player -eq $WHITE ]; then
         pass_white=$pass
+    fi
+}
+
+set_stone_left() {
+    local player=$1
+    local nb=$2
+    if [ $player -eq $BLACK ]; then
+        stone_black=$nb
+        elif [ $player -eq $WHITE ]; then
+        stone_white=$nb
     fi
 }
 
