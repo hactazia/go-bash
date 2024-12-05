@@ -1,5 +1,7 @@
 # Jeu de Go
 
+Projet Github: [hactazia/go-bash](https://github.com/hactazia/go-bash)
+
 Le jeu de Go est un jeu de stratégie combinatoire abstrait de réflexion.
 
 Ce jeu est un projet de fin de semestre pour le cours de programmation SHELL.
